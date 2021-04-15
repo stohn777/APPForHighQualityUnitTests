@@ -6,24 +6,7 @@ public inherited sharing class EmailService
     //----------------------------------------
     public static IEmailService newInstance()
     {
-        if (mock_email_service != null)
-        {
-            return (IEmailService) mock_email_service;
-        }
-
-        return new EmailService();
-    }
-
-    private static IEmailService mock_email_service = null;
-
-    public static void setMock(IEmailService mockService)
-    {
-        mock_email_service = mockService;
-    }
-
-    private EmailService()
-    {
-        // Intentionally blank
+        return (IEmailService) ServiceFactory.newInstance(IEmailService.class);
     }
 
     //----------------------------------------

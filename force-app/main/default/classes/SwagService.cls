@@ -6,24 +6,7 @@ public inherited sharing class SwagService
     //----------------------------------------
     public static ISwagService newInstance()
     {
-        if (mock_swag_service != null)
-        {
-            return (ISwagService) mock_swag_service;
-        }
-
-        return new SwagService();
-    }
-
-    private static ISwagService mock_swag_service = null;
-
-    public static void setMock(ISwagService mockService)
-    {
-        mock_swag_service = mockService;
-    }
-
-    private SwagService()
-    {
-        // Intentionally blank
+        return (ISwagService) ServiceFactory.newInstance(ISwagService.class);
     }
 
     //----------------------------------------

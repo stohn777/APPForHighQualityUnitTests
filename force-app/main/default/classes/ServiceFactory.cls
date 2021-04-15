@@ -1,4 +1,4 @@
-public inherited sharing class Factory
+public inherited sharing class ServiceFactory
 {
     private static Map<String, String> serviceMap = new Map<String, String>();
     private static Map<String, IService> mock_serviceMap = new Map<String, IService>();
@@ -11,7 +11,7 @@ public inherited sharing class Factory
         serviceMap.put('ISwagService', 'SwagService');
     }
 
-    private static IService newServiceInstance(Type t)
+    public static IService newInstance(System.Type t)
     {
         if (mock_serviceMap.containsKey(t.getName()))
         {
@@ -22,7 +22,8 @@ public inherited sharing class Factory
         return (IService) tyype.newInstance();
     }
 
-    private static void setServiceMock(Type t, IService mock_service)
+    @TestVisible
+    private static void setMock(Type t, IService mock_service)
     {
         mock_serviceMap.put(t.getName(), mock_service);
     }

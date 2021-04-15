@@ -32,11 +32,21 @@ public inherited sharing class AccountService
     //----------------------------------------
     public void createOrderForNewAccountSwag(List<Account> accountList)
     {
+        if (accountList == null)
+        {
+            throw new AccountServiceException('An instance of "accountList" must be provided');
+        }
+
         SwagService.newInstance().sendNewAccountSwag(accountList);
     }
 
     public void sendEmailToAccountsManager(List<Account> accountList)
     {
+        if (accountList == null)
+        {
+            throw new AccountServiceException('An instance of "accountList" must be provided');
+        }
+
         EmailService.newInstance().sendEmailToAccountsManager(accountList);
     }
 
@@ -51,4 +61,13 @@ public inherited sharing class AccountService
     //----------------------------------------
     private String department = null;
     private String region = null;
+
+    //----------------------------------------
+    //  Exceptions
+    //----------------------------------------
+    public class AccountServiceException
+        extends Exception
+    {
+        // Intentionally blank
+    }
 }
