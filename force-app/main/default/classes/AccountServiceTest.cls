@@ -56,7 +56,7 @@ private class AccountServiceTest
         ServiceFactory.setMock(IEmailService.class, new MockEmailService());
         ServiceFactory.setMock(ISwagService.class, new MockSwagService());
 
-        AccountService.newInstance().triggerHandler_afterInsert(new List<Account>());
+        AccountService.newInstance().triggerHandler();
     }
 
     private class MockEmailService

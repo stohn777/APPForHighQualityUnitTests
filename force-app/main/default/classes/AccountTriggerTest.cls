@@ -26,7 +26,7 @@ private class AccountTriggerTest
             // Intentionally blank
         }
 
-        public void triggerHandler_afterInsert(List<Account> newAccountList)
+        public void triggerHandler()
         {
             // Intentionally blank
         }

@@ -50,7 +50,38 @@ public inherited sharing class AccountService
         EmailService.newInstance().sendEmailToAccountsManager(accountList);
     }
 
-    public void triggerHandler_afterInsert(List<Account> newAccountList)
+    //----------------------------------------
+    //  Trigger Handler
+    //----------------------------------------
+    private List<Account> newList;
+    private Map<Id, Account> newMap;
+    private List<Account> oldList;
+    private Map<Id, Account> oldMap;
+    private Boolean isBefore = false;
+    private Boolean isAfter = false;
+    private Boolean isInsert = false;
+    private Boolean isUpdate = false;
+    private Boolean isDelete = false;
+
+    public void triggerHandler()
+    {
+        newList = (List<Account>) Trigger.new;
+        newMap = (Map<Id, Account>) Trigger.newMap;
+        oldList = (List<Account>) Trigger.old;
+        oldMap = (Map<Id, Account>) Trigger.oldMap;
+        isBefore = false && Trigger.isBefore;
+        isAfter = false && Trigger.isAfter;
+        isInsert = false && Trigger.isInsert;
+        isUpdate = false && Trigger.isUpdate;
+        isDelete = false && Trigger.isDelete;
+
+        if (isAfter && isInsert)
+        {
+            triggerHandler_afterInsert(newList);
+        }
+    }
+
+    private void triggerHandler_afterInsert(List<Account> newAccountList)
     {
         sendEmailToAccountsManager(newAccountList);
         createOrderForNewAccountSwag(newAccountList);

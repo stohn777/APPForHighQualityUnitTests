@@ -2,7 +2,6 @@ public inherited sharing class SaveResultWrapper
 {
     private Database.SaveResult save_result = null;
 
-    private List<Database.Error> mock_errors = null;
     private ID sr_id = null;
     private Boolean is_success;
 
@@ -11,9 +10,8 @@ public inherited sharing class SaveResultWrapper
         save_result = sr;
     }
 
-    private SaveResultWrapper(List<Database.Error> errorList, Id i, Boolean success)
+    private SaveResultWrapper(Id i, Boolean success)
     {
-        mock_errors = errorList;
         sr_id = i;
         is_success = success;
     }
@@ -34,9 +32,9 @@ public inherited sharing class SaveResultWrapper
     }
 
     @TestVisible
-    private static SaveResultWrapper create(List<Database.Error> errorList, Id i, Boolean success)
+    private static SaveResultWrapper create(Id i, Boolean success)
     {
-        return new SaveResultWrapper(errorList, i, success);
+        return new SaveResultWrapper(i, success);
     }
 
     //----------------------------------------
@@ -50,7 +48,8 @@ public inherited sharing class SaveResultWrapper
         }
         else
         {
-            return mock_errors;
+            // Can't create Database.Error.  Should we mock it?
+            return new List<Database.Error>();
         }
     }
 
