@@ -6,24 +6,7 @@ public inherited sharing class DatabaseWrapper
     //----------------------------------------
     public static IDatabaseWrapper newInstance()
     {
-        if (mock_database_wrapper != null)
-        {
-            return (IDatabaseWrapper) mock_database_wrapper;
-        }
-
-        return new DatabaseWrapper();
-    }
-
-    private static IDatabaseWrapper mock_database_wrapper = null;
-
-    public static void setMock(IDatabaseWrapper mockWrapper)
-    {
-        mock_database_wrapper = mockWrapper;
-    }
-
-    private DatabaseWrapper()
-    {
-        // Intentionally blank
+        return (IDatabaseWrapper) ServiceFactory.newInstance(IDatabaseWrapper.class);
     }
 
     //----------------------------------------

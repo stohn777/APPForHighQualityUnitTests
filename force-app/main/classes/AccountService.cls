@@ -16,7 +16,8 @@ public inherited sharing class AccountService
 
     private static IAccountService mock_account_service = null;
 
-    public static void setMock(IAccountService mockService)
+    @TestVisible
+    private static void setMock(IAccountService mockService)
     {
         mock_account_service = mockService;
     }

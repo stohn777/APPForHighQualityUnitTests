@@ -30,7 +30,7 @@ private class DatabaseWrapperTest
         );
         List<Contact> contactList = new List<Contact> {ctc};
 
-        DatabaseWrapper.setMock(new DatabaseWrapperMock());
+        ServiceFactory.setMock(IDatabaseWrapper.class, new DatabaseWrapperMock());
 
         DatabaseWrapper.newInstance().db_insert(contactList);
 

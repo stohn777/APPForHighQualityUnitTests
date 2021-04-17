@@ -10,7 +10,7 @@ private class SwagServiceTest
         );
 
         DatabaseWrapperMock mock = new DatabaseWrapperMock();
-        DatabaseWrapper.setMock(mock);
+        ServiceFactory.setMock(IDatabaseWrapper.class, mock);
 
         SwagService.newInstance().sendNewAccountSwag(new List<Account> {acct});
 
