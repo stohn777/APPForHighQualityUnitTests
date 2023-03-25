@@ -6,9 +6,14 @@ public inherited sharing class ServiceFactory
     static
     {
         // Ideally these would be dynamically loaded, e.g. Custom Metadata
+        serviceMap.put('IContactSelector', 'ContactSelector');
+        serviceMap.put('IContactService', 'ContactService');
         serviceMap.put('IDatabaseWrapper', 'DatabaseWrapper');
         serviceMap.put('IEmailService', 'EmailService');
+        serviceMap.put('IRandomStringConsumer', 'RandomStringConsumer');
+        serviceMap.put('IRandomStringService', 'RandomStringService');
         serviceMap.put('ISwagService', 'SwagService');
+        serviceMap.put('IUnitOfWork', 'UnitOfWork');
     }
 
     public static IService newInstance(System.Type t)
